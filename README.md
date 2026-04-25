@@ -25,3 +25,8 @@ faz:
 ## Build
 
 GitHub Actions já está travado em Gradle 8.10.2.
+
+
+## v1.0.2
+
+Corrige o erro `Invalid block entity ... Block{minecraft:air}` usando o block state real de `cobblesafari:dungeon_portal` para criar a entrada temporária interna.

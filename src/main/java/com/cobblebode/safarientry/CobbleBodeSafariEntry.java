@@ -3,6 +3,7 @@ package com.cobblebode.safarientry;
 import com.mojang.brigadier.CommandDispatcher;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.item.Item;
@@ -128,7 +129,13 @@ public class CobbleBodeSafariEntry implements ModInitializer {
         Class<?> portalClass = Class.forName("maxigregrze.cobblesafari.block.dungeon.DungeonPortalBlockEntity");
 
         BlockPos pos = player.getBlockPos();
-        BlockState state = player.getWorld().getBlockState(pos);
+
+        // IMPORTANT:
+        // DungeonPortalBlockEntity validates that it was created with the correct block state.
+        // Using the player's current block state, usually air, throws:
+        // Invalid block entity cobblesafari:dungeon_portal // Block{minecraft:air}
+        Block portalBlock = Registries.BLOCK.get(Identifier.of("cobblesafari", "dungeon_portal"));
+        BlockState state = portalBlock.getDefaultState();
 
         Constructor<?> constructor = portalClass.getConstructor(BlockPos.class, BlockState.class);
         Object portal = constructor.newInstance(pos, state);
