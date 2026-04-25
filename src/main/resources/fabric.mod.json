@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "cobblebode_safari_entry",
+  "version": "${version}",
+  "name": "CobbleBode Safari Dungeon Entry",
+  "description": "Ticket-based direct dungeon entry for CobbleSafari.",
+  "authors": ["CobbleBode"],
+  "license": "ARR",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.cobblebode.safarientry.CobbleBodeSafariEntry"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "1.21.1",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "cobblesafari": "*"
+  }
+}
